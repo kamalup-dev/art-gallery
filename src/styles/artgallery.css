@@ -1,0 +1,48 @@
+.gap-16 {
+    gap: 16px;
+}
+
+.container {
+    padding: 5rem;
+}
+
+.image-element {
+    border-radius: 16px;
+}
+
+.image-overlay {
+    display: none;
+}
+
+.overlay {
+    background: hsla(0, 0%, 100%, .85);
+    color: #c74778;
+    display: unset;
+    transition: all .5s;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.image-element:hover {
+    opacity: .5;
+    cursor: pointer;
+}
+
+.items {
+    transition: transform .7s ease;
+    bottom: 0;
+    height: 50%;
+}
+
+.transform-40 {
+    transform: translateY(40px);
+}
+
+.transform-10 {
+    transform: translateY(10px);
+}
