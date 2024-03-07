@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import Upload from "./components/Upload";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/art-gallery" element={<Home />} />
           <Route path="/art-gallery/profile" element={<Profile />} />
           <Route path="/art-gallery/upload" element={<Upload />} />
+          <Route path="/art-gallery/login" element={<Login />} />
           {/* Add more routes as needed */}
           <Route path="*" element={<NotFound />} /> {/* Handle 404 */}
         </Routes>

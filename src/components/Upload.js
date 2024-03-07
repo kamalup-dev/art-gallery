@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import _ from "lodash";
-import { createClient } from "@supabase/supabase-js";
 import { parseISO } from "date-fns";
 import '../styles/upload.css'
-
-const supabase = createClient(
-  "https://irfzjowoxktrxrthxdqc.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlyZnpqb3dveGt0cnhydGh4ZHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4MDYwMjYsImV4cCI6MjAyNTM4MjAyNn0.8IDMst-h7mFIS0DcgfB0-Ry2l2rlRVmmedUdAGrlhDU"
-);
+import supabase from "../data/supabase";
 
 function Upload() {
   const [isError, setIsError] = useState(null);

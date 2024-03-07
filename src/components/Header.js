@@ -2,8 +2,20 @@ import React from "react";
 import logo from "../img/Screenshot 2024-03-06 162100.png";
 import "../styles/header.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import supabase from "../data/supabase";
+import { logoutUser } from "../store/store";
 
 function Header() {
+  const authUser = useSelector(state => state.user)
+  console.log(authUser)
+  const dispatch = useDispatch()
+
+  const handleLogout = async () => {
+    dispatch(logoutUser())
+    await supabase.auth.signOut()
+  }
+
   return (
     <nav class="navbar logo">
       <div class="container-fluid">
@@ -24,8 +36,13 @@ function Header() {
             </li>
             <li class="nav-item">
               <Link class="nav-link" to="/art-gallery/profile">
-                Profile
+                About
               </Link>
+            </li>
+            <li class="nav-item">
+              {!authUser ? <Link class="nav-link" to="/art-gallery/login">
+                Login
+              </Link>: <button className="btn btn-sm btn-warning" onClick={handleLogout}>Logout</button>}
             </li>
           </ul>
         </div>
