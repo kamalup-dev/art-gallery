@@ -20,9 +20,9 @@ function App() {
       </header>
       <section className="container-fluid d-flex justify-content-center">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/upload" element={<Upload />} />
+          <Route path="/art-gallery" element={<Home />} />
+          <Route path="/art-gallery/profile" element={<Profile />} />
+          <Route path="/art-gallery//upload" element={<Upload />} />
           {/* Add more routes as needed */}
           <Route path="*" element={<NotFound />} /> {/* Handle 404 */}
         </Routes>

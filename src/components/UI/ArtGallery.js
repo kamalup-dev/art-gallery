@@ -13,6 +13,8 @@ const supabase = createClient(
 
 function ArtGallery() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState({
     column1: [],
     column2: [],
@@ -25,9 +27,15 @@ function ArtGallery() {
   }, []);
 
   async function getImageData() {
+    setIsLoading(true)
+    try {
     const { data } = await supabase.from("tb_images").select('*').eq('deleted', 0);
-    console.log(data);
     setPhotos(data);
+    } catch (error) {
+      setError("Something went wrong. Please try agian!")
+      console.error("Error inserting data:", error.message);
+    }
+    setIsLoading(false)
   }
 
   // Function to update screenWidth state
@@ -155,6 +163,8 @@ function ArtGallery() {
   };
   return (
     <div className="container text-center d-flex justify-content-around align-items-start">
+      {isLoading && <div>Fetching Images...</div>}
+      {!isLoading && error && <div>{error}</div>}
       {_.isArray(data.column1) && data.column1.length > 0 && (
         <div className="row gap-16 row-cols-auto flex-col justify-content-center">
           {data.column1.map((image, index) => (
