@@ -1,0 +1,49 @@
+.form-container {
+    background: white;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    color: #484439;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    text-align: left;
+    width: 25rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.success-msg {
+    gap: 10px;
+    display: flex;
+    background: #b3ffb3;
+    margin: 1rem 0 2rem 0; 
+    padding: 2px 10px;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 12px;
+    justify-content: space-between;
+}
+
+.success-msg p {
+    margin: 0;
+}
+
+.success-msg .msg {
+    font-size: 11px;
+}
+
+.success-msg .close-btn {
+    color: red;
+    cursor: pointer;
+    font-weight: 600;
+    background: white;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

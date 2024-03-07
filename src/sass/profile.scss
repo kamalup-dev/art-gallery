@@ -1,0 +1,65 @@
+
+.hexagon-profile {
+	font-size: 60px;
+	overflow: hidden;
+	height: 100vh;
+	// Not auto-prefixed
+	$filter: drop-shadow(0 0 7px black) blur(10px) contrast(10);
+	-webkit-filter: $filter;
+	filter: $filter;
+}
+.fakehexagon
+{
+	position: absolute;
+	width: 1em;
+	height: 1em;
+	top: 50%;
+	left: 50%;
+	margin: -.5em 0 0 -.5em;
+	color: #fff;
+}
+.fakehexagon .face
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1em;
+	height: 1em;
+	background: currentColor;
+	transform-style: preserve-3d;
+	// Gives an inradius of 1em
+	$scale: sqrt(2);
+	$base-transform: scale($scale) rotateX(-35deg) rotateY(-45deg);
+	&:nth-child(1) { transform: $base-transform translateZ( .5em); }
+	&:nth-child(2) { transform: $base-transform translateX( .5em) rotateY(90deg); }
+	&:nth-child(3) { transform: $base-transform translateY(-.5em) rotateX(90deg); }
+	/* To prevent gap lines (won't work in IE because preserve-3d is needed but meh) */
+	&::after
+	{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: currentColor;
+		transform: translateZ(-1em);
+	}
+}
+
+@for $i from 1 through 6
+{
+	$num: $i - 1;
+	@keyframes hex#{$i}
+	{
+		$rot: $num * 60deg;
+		from, 15% { transform: rotate($rot) translateX(0) translateX(-1em) rotateY(0deg) translateX(1em); }
+		65% { transform: rotate($rot) translateX(2em) translateX(-1em) rotateY(0deg) translateX(1em); }
+		to { transform: rotate($rot+60deg) translateX(2em) translateX(-1em) rotateY(180deg) translateX(1em); }
+	}
+	.fakehexagon:nth-child(#{$i})
+	{
+		color: hsl(60*$num, 100%, 50%);
+		animation: hex#{$i} 4.5s infinite;
+	}
+}

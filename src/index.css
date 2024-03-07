@@ -5,6 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background:
+  /* Draw circles in the center of a pixel to paint them */ radial-gradient(
+      circle at 3.5px 3.5px,
+      pink 0.5px,
+      transparent 0
+    ),
+    radial-gradient(circle at 7.5px 7.5px, pink 0.5px, transparent 0);
+  background-size: 8px 8px;
+  padding: 0;
 }
 
 code {

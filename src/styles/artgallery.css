@@ -3,7 +3,8 @@
 }
 
 .container {
-    padding: 5rem;
+    padding: 1rem 5rem;
+    gap: 1.5rem;
 }
 
 .image-element {
@@ -14,11 +15,25 @@
     display: none;
 }
 
+.opacity-1 {
+    opacity: 1 !important;
+}
+
+#cardTitle {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #71786D;
+}
+
+#cardDate {
+    text-decoration: overline;
+    color: #7A7352;
+}
+
 .overlay {
     background: hsla(0, 0%, 100%, .85);
     color: #c74778;
     display: unset;
-    transition: all .5s;
     height: 100%;
     width: 100%;
     top: 0;
@@ -26,6 +41,8 @@
     bottom: 0;
     z-index: 1;
     cursor: pointer;
+    opacity: 0; /* Initial opacity */
+    transition: opacity 1s ease; /* Transition for smooth opacity change */
 }
 
 .image-element:hover {
@@ -40,9 +57,9 @@
 }
 
 .transform-40 {
-    transform: translateY(40px);
+    transform: translateY(50%);
 }
 
 .transform-10 {
-    transform: translateY(10px);
+    transform: translateY(30%);
 }

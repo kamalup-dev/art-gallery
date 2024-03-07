@@ -1,5 +1,4 @@
-
-const image_data = [
+[
   {
     "src": "https://picsum.photos/id/1019/1000/600/",
     "name": "test pic1",
@@ -56,5 +55,3 @@ const image_data = [
     "date": "03/07/2001"
   }
 ]
-
-export default image_data;
