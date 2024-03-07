@@ -36,8 +36,6 @@ function Login() {
             dispatch(loginUser(response?.data?.user))
             navigate("/art-gallery/upload", {replace: true})
         }
-       
-        console.log(response)
       } catch (error) {
         setErrorMsg("Something went wrong. Please try agian!");
         console.error("Error inserting data:", error.message);

@@ -8,7 +8,6 @@ import { logoutUser } from "../store/store";
 
 function Header() {
   const authUser = useSelector(state => state.user)
-  console.log(authUser)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
