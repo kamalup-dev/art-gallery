@@ -7,7 +7,7 @@ function Header() {
   return (
     <nav class="navbar logo">
       <div class="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/art-gallery">
           {/* <img
             src={logo}
             alt="Logo"
@@ -18,12 +18,12 @@ function Header() {
         <div class="navbar-items" id="navbarNav">
           <ul class="navbar-list">
             <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/">
+              <Link class="nav-link active" aria-current="page" to="/art-gallery">
                 Gallery
               </Link>
             </li>
             <li class="nav-item">
-              <Link class="nav-link" to="/profile">
+              <Link class="nav-link" to="/art-gallery/profile">
                 Profile
               </Link>
             </li>
