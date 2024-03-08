@@ -15,40 +15,40 @@ function Profile() {
       <div className="profile-container">
         <div className="splash-image"></div>
         {/* <div className="hexagon-profile">
-        <div class="fakehexagon">
-          <div class="face"></div>
-          <div class="face"></div>
-          <div class="face"></div>
+        <div className="fakehexagon">
+          <div className="face"></div>
+          <div className="face"></div>
+          <div className="face"></div>
         </div>
-        <div class="fakehexagon">
-          <div class="face"></div>
-          <div class="face"></div>
-          <div class="face"></div>
+        <div className="fakehexagon">
+          <div className="face"></div>
+          <div className="face"></div>
+          <div className="face"></div>
         </div>
-        <div class="fakehexagon">
-          <div class="face"></div>
-          <div class="face"></div>
-          <div class="face"></div>
+        <div className="fakehexagon">
+          <div className="face"></div>
+          <div className="face"></div>
+          <div className="face"></div>
         </div>
-        <div class="fakehexagon">
-          <div class="face"></div>
-          <div class="face"></div>
-          <div class="face"></div>
+        <div className="fakehexagon">
+          <div className="face"></div>
+          <div className="face"></div>
+          <div className="face"></div>
         </div>
-        <div class="fakehexagon">
-          <div class="face"></div>
-          <div class="face"></div>
-          <div class="face"></div>
+        <div className="fakehexagon">
+          <div className="face"></div>
+          <div className="face"></div>
+          <div className="face"></div>
         </div>
-        <div class="fakehexagon">
-          <div class="face"></div>
-          <div class="face"></div>
-          <div class="face"></div>
+        <div className="fakehexagon">
+          <div className="face"></div>
+          <div className="face"></div>
+          <div className="face"></div>
         </div>
-        <div class="fakehexagon">
-          <div class="face"></div>
-          <div class="face"></div>
-          <div class="face"></div>
+        <div className="fakehexagon">
+          <div className="face"></div>
+          <div className="face"></div>
+          <div className="face"></div>
         </div>
       </div> */}
       </div>

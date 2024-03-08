@@ -33,7 +33,7 @@ function Login() {
           password: password.value,
         });
         if(response?.data?.user?.aud === "authenticated") {
-            dispatch(loginUser(response?.data?.user))
+            dispatch(loginUser(response?.data))
             navigate("/art-gallery/upload", {replace: true})
         }
       } catch (error) {

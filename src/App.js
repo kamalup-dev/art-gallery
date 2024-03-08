@@ -12,8 +12,32 @@ import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import Upload from "./components/Upload";
 import Login from "./components/Login";
+import supabase from "./data/supabase";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser, logoutUser } from "./store/store";
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    // const session = supabase.auth?.session();
+    // dispatch(loginUser(session?.user))
+    const {data: authListener} = supabase.auth.onAuthStateChange((event, session) => {
+      switch(event) {
+        case "SIGNED_IN":
+          dispatch(loginUser(session?.user))
+          break;
+        case "SIGNED_OUT":
+          dispatch(logoutUser())
+          break;
+        default:
+          break;
+      }
+    });
+    // return () => {
+    //   authListener.unsubscribe()
+    // }
+  })
   return (
     <div className="App">
       <header className="App-header">

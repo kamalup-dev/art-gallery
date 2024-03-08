@@ -24,7 +24,6 @@
   margin: 3rem 5rem;
   border-radius: 15px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  height: 60vh;
 }
 .splash-image {
   position: relative;
@@ -54,6 +53,8 @@
   transform: scale(0); /* Initial scale */
 }
 
+
+
 /* Define the zoom-in animation */
 @keyframes zoomIn {
   from {
@@ -64,18 +65,43 @@
   }
 }
 
+/* Mobile */
+
+@media only screen and (max-width: 394px){
+  .splash-image {
+    width: 100%;
+  }
+}
+
+@media (min-width: 395px) and (max-width: 767px) {
+  .splash-image {
+    width: 22rem;
+  }
+}
+
 /* Mobile and Tablet */
 @media only screen and (max-width: 767px) {
   .profile-container {
     width: 100%;
-    height: 64vh;
   }
   .profile-card {
     flex-direction: column-reverse;
     height: auto;
+    margin: 3rem 0;
   }
   .intro-text {
     width: auto;
+  }
+  .intro-text p {
+    text-align: center;
+  }
+  .splash-image {
+    margin: auto;
+    border-radius: 0;
+    height: 64vh;
+  }
+  .res-dp1 {
+    display: none;
   }
 }
 
@@ -84,5 +110,8 @@
 @media (min-width: 768px) {
   .profile-card {
     width: 50rem;
+  }
+  .res-dp2 {
+    display: none;
   }
 }

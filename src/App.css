@@ -21,8 +21,8 @@
 .App-header {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   position: fixed;
-  width: 100vw;
-  z-index: 2;
+  width: 100%;
+  z-index: 999;
   top: 0;
 }
 

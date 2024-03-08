@@ -1,36 +1,62 @@
 import React, { useEffect, useState } from "react";
 import image_data from "../../data/pictures";
 import "../../styles/artgallery.css";
-import _ from "lodash";
+import _, { update } from "lodash";
 
 import { createClient } from "@supabase/supabase-js";
 import supabase from "../../data/supabase";
+import { useSelector } from "react-redux";
 
 function ArtGallery() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [error, setError] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
     column1: [],
     column2: [],
     column3: [],
   });
-  const [photos, setPhotos] = useState([])
+  const [photos, setPhotos] = useState([]);
+  const authUser = useSelector((state) => state.user);
 
   useEffect(() => {
     getImageData();
   }, []);
 
-  async function getImageData() {
-    setIsLoading(true)
+  const updateData = async (id) => {
     try {
-    const { data } = await supabase.from("tb_images").select('*').eq('deleted', 0);
-    setPhotos(data);
+      const query = supabase
+        .from("tb_images")
+        .update({
+          deleted: 1
+        })
+        .eq("id", id);
+
+      const {data, error} = await query;
+
+      if (error) {
+        throw error;
+      }
+      await getImageData();
+      console.log("Data updated successfully:", data);
     } catch (error) {
-      setError("Something went wrong. Please try agian!")
+      console.error("Error updating data:", error.message);
+    }
+  };
+
+  async function getImageData() {
+    setIsLoading(true);
+    try {
+      const { data } = await supabase
+        .from("tb_images")
+        .select("*")
+        .eq("deleted", 0);
+      setPhotos(data);
+    } catch (error) {
+      setError("Something went wrong. Please try agian!");
       console.error("Error inserting data:", error.message);
     }
-    setIsLoading(false)
+    setIsLoading(false);
   }
 
   // Function to update screenWidth state
@@ -170,6 +196,63 @@ function ArtGallery() {
               className="col position-relative"
               key={index}
             >
+              {authUser && (
+                <span
+                  onClick={() => updateData(image?.id)}
+                  className="delete-btn"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      {" "}
+                      <path
+                        d="M10 12V17"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M14 12V17"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M4 7H20"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                    </g>
+                  </svg>
+                </span>
+              )}
               <img
                 className="image-element border-dark-subtle"
                 src={image.src}
@@ -179,19 +262,19 @@ function ArtGallery() {
               />
               <div
                 id={`overlay-container-${index}`}
-                class="image-overlay position-absolute"
+                className="image-overlay position-absolute"
               >
                 <div
                   id={`cardTitleContainer-${index}`}
-                  class="items card-title-container"
+                  className="items card-title-container"
                 >
                   <p id="cardTitle">{_.toUpper(image.name)}</p>
                 </div>
                 <div
                   id={`cardDateContainer-${index}`}
-                  class="items card-date-container"
+                  className="items card-date-container"
                 >
-                  <p id="cardDate">{image?.date.split('T')[0]}</p>
+                  <p id="cardDate">{image?.date.split("T")[0]}</p>
                 </div>
               </div>
             </div>
@@ -208,6 +291,63 @@ function ArtGallery() {
               className="col position-relative"
               key={index}
             >
+              {authUser && (
+                <span
+                  onClick={() => updateData(image?.id)}
+                  className="delete-btn"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      {" "}
+                      <path
+                        d="M10 12V17"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M14 12V17"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M4 7H20"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                    </g>
+                  </svg>
+                </span>
+              )}
               <img
                 className="image-element border-dark-subtle"
                 src={image.src}
@@ -217,19 +357,19 @@ function ArtGallery() {
               />
               <div
                 id={`overlay-container-${index}col2`}
-                class="image-overlay position-absolute"
+                className="image-overlay position-absolute"
               >
                 <div
                   id={`cardTitleContainer-${index}col2`}
-                  class="items card-title-container"
+                  className="items card-title-container"
                 >
                   <p id="cardTitle">{_.toUpper(image.name)}</p>
                 </div>
                 <div
                   id={`cardDateContainer-${index}col2`}
-                  class="items card-date-container"
+                  className="items card-date-container"
                 >
-                  <p id="cardDate">{image?.date.split('T')[0]}</p>
+                  <p id="cardDate">{image?.date.split("T")[0]}</p>
                 </div>
               </div>
             </div>
@@ -246,6 +386,63 @@ function ArtGallery() {
               className="col position-relative"
               key={index}
             >
+              {authUser && (
+                <span
+                  onClick={() => updateData(image?.id)}
+                  className="delete-btn"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      {" "}
+                      <path
+                        d="M10 12V17"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M14 12V17"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M4 7H20"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                        stroke="#ec5f5f"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                    </g>
+                  </svg>
+                </span>
+              )}
               <img
                 className="image-element border-dark-subtle"
                 src={image.src}
@@ -255,19 +452,19 @@ function ArtGallery() {
               />
               <div
                 id={`overlay-container-${index}col3`}
-                class="image-overlay position-absolute"
+                className="image-overlay position-absolute"
               >
                 <div
                   id={`cardTitleContainer-${index}col3`}
-                  class="items card-title-container"
+                  className="items card-title-container"
                 >
                   <p id="cardTitle">{_.toUpper(image.name)}</p>
                 </div>
                 <div
                   id={`cardDateContainer-${index}col3`}
-                  class="items card-date-container"
+                  className="items card-date-container"
                 >
-                  <p id="cardDate">{image?.date.split('T')[0]}</p>
+                  <p id="cardDate">{image?.date.split("T")[0]}</p>
                 </div>
               </div>
             </div>

@@ -43,9 +43,11 @@ function Upload() {
         };
 
         // Insert data into the 'tb_images' table
-        const { data, error } = await supabase
+        const insert_query = supabase
           .from("tb_images")
           .insert([newData]);
+        
+        const { data, error } = await insert_query;
 
         if (error) {
           throw error;
